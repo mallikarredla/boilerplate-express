@@ -17,7 +17,11 @@ if (!process.env.DISABLE_XORIGIN) {
 }
 
 const port = process.env.PORT || 3001;
+bGround.setupBackgroundApp(app, myApp, __dirname).listen(port)
 
-bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, () => {
-  console.log(`Node.js listening on port ${port}`);
-});
+  .on('error', (err) => {
+    console.error('Server failed to start:', err);
+  })
+  .on('listening', () => {
+    console.log(`Node.js listening on port ${port}`);
+  });
