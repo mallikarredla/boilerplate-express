@@ -16,12 +16,7 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
-const port = process.env.PORT || 3001;
-bGround.setupBackgroundApp(app, myApp, __dirname).listen(port)
+// Do NOT call .listen here – Render does it via fcc-express-bground
+bGround.setupBackgroundApp(app, myApp, __dirname);
 
-  .on('error', (err) => {
-    console.error('Server failed to start:', err);
-  })
-  .on('listening', () => {
-    console.log(`Node.js listening on port ${port}`);
-  });
+console.log('App initialized. Waiting for Render to assign port...');
